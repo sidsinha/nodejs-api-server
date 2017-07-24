@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="DC.Language" content="English" />
+    <meta name="description" content="NodeJS Server API" />
+    <title>NodeJS Server API</title>
+</head>
+<body ng-app="app" ng-controller="mainController">
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="txtcenter ng-cloak">{{ title }}</h1>
+        </div>
+        <div class="search-box col-lg-3 col-md-4 col-sm-6"><input type="text" class="form-control" ng-model="searchTerm" placeholder="Filter result"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="center">#</th>
+                    <th class="center">Category
+                        <i class="fa fa-sort icon-sort" ng-click="sort('category')" aria-hidden="true"></i>
+                    </th>
+                    <th class="center">Name 
+                        <i class="fa fa-sort icon-sort" ng-click="sort('name')" aria-hidden="true"></i>
+                    </th>
+                    <th class="center">Reaction</th>
+                </tr>
+            </thead>
+            <tbody ng-show="getData.length">
+                <tr ng-repeat="d in getData | filter:searchTerm | orderBy: sortType">
+                    <th scope="row" class="center ng-cloak">{{ $index+1 }}.</th>
+                    <td class="center ng-cloak">{{ d.category }}</td>
+                    <td class="center ng-cloak">{{ d.name }}</td>
+                    <td class="center ng-cloak">
+                        <div ng-hide="reactionIDMap[d.id]">
+                            <a href="javascript:void(0)" ng-click="iconClicked(d.id, 'up')">
+                                <i class="fa fa-thumbs-o-up fa-2x icon-up" aria-hidden="true"></i>
+                            </a>
+                            <a href="javascript:void(0)" ng-click="iconClicked(d.id, 'down')">
+                                <i class="fa fa-thumbs-o-down fa-2x icon-down" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div ng-show="reactionIDMap[d.id]">
+                            <i class="fa fa-thumbs-{{reactionIDMap[d.id]}} fa-2x icon-up" ng-class="{'green' : reactionIDMap[d.id] === 'up', 'red' : reactionIDMap[d.id] === 'down'}" aria-hidden="true"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="./bundle.min.js" async></script>
+    <link rel="stylesheet" href="./app/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./app/assets/css/style.min.css">
+    <link rel="stylesheet" href="./app/assets/css/font-awesome.min.css">
+</body>
+</html>
