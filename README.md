@@ -85,4 +85,4 @@ If interested, feel free to checkout the next version of the this NodeJS API Ser
 
 
 
-![ScreenShot](https://raw.githubusercontent.com/sidsinha/nodejs-api-server/master/app/assets/img/screnshot.png)
+![ScreenShot](https://raw.githubusercontent.com/sidsinha/nodejs-api-server/master/app/assets/img/screenshot.png)
